@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  composer:
+    image: fprochazka/composer:latest
+    build:
+      context: composer
+      args:
+        COMPOSER_VERSION: 1.4.1
