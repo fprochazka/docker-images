@@ -1,0 +1,23 @@
+language: php
+
+sudo: false
+
+services:
+  - docker
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.12.0
+
+php: 7.0
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install docker-engine
+  - docker version
+  - mkdir ~/bin && export PATH=$PATH:$HOME/bin
+  - travis_retry curl -L https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/run.sh > ~/bin/docker-compose
+  - chmod +x ~/bin/docker-compose
+  - docker-compose version
+
+script:
+  - docker-compose build
