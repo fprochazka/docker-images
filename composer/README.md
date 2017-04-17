@@ -1,5 +1,8 @@
 # Composer
 
+* PHP 7.1
+* Composer 1.4.1
+
 ## Install
 
 ```bash
