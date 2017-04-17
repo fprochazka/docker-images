@@ -91,5 +91,5 @@ WORKDIR /app
 
 # Set up the command arguments
 CMD ["-"]
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
