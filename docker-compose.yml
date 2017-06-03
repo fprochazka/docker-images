@@ -7,3 +7,18 @@ services:
       context: composer
       args:
         COMPOSER_VERSION: 1.4.1
+
+  php56:
+    image: fprochazka/php:5.6
+    build:
+      context: php56
+
+  php70:
+    image: fprochazka/php:7.0
+    build:
+      context: php70
+
+  php71:
+    image: fprochazka/php:7.1
+    build:
+      context: php71
