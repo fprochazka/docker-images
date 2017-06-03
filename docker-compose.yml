@@ -22,3 +22,9 @@ services:
     image: fprochazka/php:7.1
     build:
       context: php71
+
+  php71-exec:
+    image: fprochazka/php:7.1-exec
+    build:
+      context: php71
+      dockerfile: Dockerfile.executable
