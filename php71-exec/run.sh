@@ -20,23 +20,23 @@ if [ -n "$HOME" ]; then
     PHP_HOME="$HOME/.composer"
 fi
 if [ -n "$SSH_AUTH_SOCK" ]; then
-	DOCKER_VOLUMES="$DOCKER_VOLUMES -v $SSH_AUTH_SOCK:/ssh-agent"
-	DOCKER_ENVIRONMENT="$DOCKER_ENVIRONMENT -e SSH_AUTH_SOCK=/ssh-agent"
+    DOCKER_VOLUMES="$DOCKER_VOLUMES -v $SSH_AUTH_SOCK:/ssh-agent"
+    DOCKER_ENVIRONMENT="$DOCKER_ENVIRONMENT -e SSH_AUTH_SOCK=/ssh-agent"
 fi
 
 if [[ -f "$1" || -d "$1" ]]; then
-	ABS_ARG="$(cd $(dirname $1); pwd)/$(basename $1)"
+    ABS_ARG="$(cd $(dirname $1); pwd)/$(basename $1)"
     DOCKER_VOLUMES="$DOCKER_VOLUMES -v $ABS_ARG:$ABS_ARG"
 fi
 
 if [ -z "$PHP_USER_NAME" ]; then
-	export PHP_USER_NAME=$(id -un)
+    export PHP_USER_NAME=$(id -un)
 fi
 if [ -z "$PHP_USER_UID" ]; then
-	export PHP_USER_UID=$(id -u)
+    export PHP_USER_UID=$(id -u)
 fi
 if [ -z "$PHP_USER_GID" ]; then
-	export PHP_USER_GID=$(id -g)
+    export PHP_USER_GID=$(id -g)
 fi
 
 PHP_USER="-e PHP_USER_NAME -e PHP_USER_UID -e PHP_USER_GID -e PHP_HOME";
