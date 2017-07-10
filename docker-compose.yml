@@ -27,3 +27,8 @@ services:
     image: fprochazka/php:7.1-exec
     build:
       context: php71-exec
+
+  php72:
+    image: fprochazka/php:7.2
+    build:
+      context: php72
