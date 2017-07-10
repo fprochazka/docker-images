@@ -8,13 +8,20 @@ set -e
 VERSION="latest"
 IMAGE="fprochazka/composer:$VERSION"
 
+DOCKER_VOLUMES=""
+DOCKER_ENVIRONMENT=""
+
 # Setup volume mounts for compose config and context
 if [ "$(pwd)" != '/' ]; then
-    VOLUMES="-v $(pwd):$(pwd)"
+    DOCKER_VOLUMES="$DOCKER_VOLUMES -v $(pwd):$(pwd)"
 fi
 if [ -n "$HOME" ]; then
-    VOLUMES="$VOLUMES -v $HOME:$HOME"
+    DOCKER_VOLUMES="$DOCKER_VOLUMES -v $HOME:$HOME"
     COMPOSER_HOME="$HOME/.composer"
+fi
+if [ -n "$SSH_AUTH_SOCK" ]; then
+	DOCKER_VOLUMES="$DOCKER_VOLUMES -v $SSH_AUTH_SOCK:/ssh-agent"
+	DOCKER_ENVIRONMENT="$DOCKER_ENVIRONMENT -e SSH_AUTH_SOCK=/ssh-agent"
 fi
 
 if [ -z "$COMPOSER_USER_NAME" ]; then
@@ -37,4 +44,4 @@ if [ -t 0 ]; then
     DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -i"
 fi
 
-exec docker run --rm $DOCKER_RUN_OPTIONS $VOLUMES $COMPOSER_USER -w "$(pwd)" $IMAGE "$@"
+exec docker run --rm $DOCKER_RUN_OPTIONS $DOCKER_VOLUMES $DOCKER_ENVIRONMENT $COMPOSER_USER -w "$(pwd)" $IMAGE "$@"
