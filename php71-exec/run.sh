@@ -8,7 +8,7 @@ set -e
 VERSION="7.1"
 IMAGE="fprochazka/php:$VERSION-exec"
 
-DOCKER_VOLUMES=""
+DOCKER_VOLUMES="-v /home/fprochazka/devel:/home/fprochazka/devel"
 DOCKER_ENVIRONMENT=""
 
 # Setup volume mounts for compose config and context
@@ -25,7 +25,8 @@ if [ -n "$SSH_AUTH_SOCK" ]; then
 fi
 
 if [[ -f "$1" || -d "$1" ]]; then
-    DOCKER_VOLUMES="$DOCKER_VOLUMES -v $1:$1"
+	ABS_ARG="$(cd $(dirname $1); pwd)/$(basename $1)"
+    DOCKER_VOLUMES="$DOCKER_VOLUMES -v $ABS_ARG:$ABS_ARG"
 fi
 
 if [ -z "$PHP_USER_NAME" ]; then
