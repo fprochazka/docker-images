@@ -25,6 +25,8 @@ RUN set -ex; \
     # verify that the binary works
     gosu nobody true
 
+RUN apt-get update && apt-get install -y --no-install-recommends git unzip
+
 ADD docker-php-entrypoint /docker-php-entrypoint
 
 ENTRYPOINT ["/docker-php-entrypoint"]
