@@ -1,4 +1,4 @@
-FROM php:7.2.0alpha3
+FROM php:7.2.0beta1-cli
 
 RUN apt-get update \
     && apt-get install -y \
