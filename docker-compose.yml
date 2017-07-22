@@ -8,6 +8,11 @@ services:
       args:
         COMPOSER_VERSION: 1.4.1
 
+  php54:
+    image: fprochazka/php:5.4
+    build:
+      context: php54
+
   php55:
     image: fprochazka/php:5.5
     build:
