@@ -42,3 +42,8 @@ services:
     image: fprochazka/php:7.2
     build:
       context: php72
+
+  node81:
+    image: fprochazka/node:8.1
+    build:
+      context: node81

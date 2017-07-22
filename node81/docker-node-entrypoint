@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+# if [ -z $(id "$PHP_USER_NAME" >/dev/null 2>&1) ]; then
+#     groupadd --gid ${PHP_USER_GID} ${PHP_USER_NAME} >/dev/null 2>&1
+#     useradd --uid ${PHP_USER_UID} --gid ${PHP_USER_GID} --create-home ${PHP_USER_NAME} >/dev/null 2>&1
+# fi
+
+# exec gosu $PHP_USER_NAME "$@"
+exec node "$@"
