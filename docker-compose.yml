@@ -42,3 +42,13 @@ services:
     image: fprochazka/php:7.2
     build:
       context: php72
+
+  oracle-java:
+    image: fprochazka/oracle-java:jdk8
+    build:
+      context: oracle-java/jdk-8
+
+  maven:
+    image: fprochazka/maven:3.5.0-jdk8
+    build:
+      context: maven
