@@ -17,8 +17,7 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/cache/oracle-jdk${JAVA_VERSION}-installer \
   && update-java-alternatives -s java-8-oracle \
-  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && locale-gen en_US.UTF-8
 
-RUN apt-get install -y locales
-RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
